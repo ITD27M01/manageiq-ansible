@@ -1,0 +1,32 @@
+---
+cloud_url: 'https://manageiq'
+cloud_user: igor.tiunov
+cloud_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          63323239356263663564373638363364636330346139656462633562633962623763353865353933
+          6635396338333965356638383633666232373964316665310a373466646530363339306434376632
+          39306335623330666333646531346334134535336363386665663036376130633833656530333566
+          3638363638333264310a633532656664356164623335343933353239353739313063336237373337
+          3039
+cloud_group: 'devops'
+
+service_name: 'My Environment'
+service_template: 'OpenStack Instance'
+
+cloud_resources:
+  - service_template: "{{ service_template }}"
+    custom_role: windows
+    src_ems_id: "{{ SPB }}"
+    placement_availability_zone: "{{ default_az }}"
+    src_vm_id: "{{ windows_server_2k12r2 }}"
+    instance_type: "{{ t1_2medium }}"
+    number_of_vms: 2
+    service_guid: "{{ service.service_guid }}"
+  - service_template: "{{ service_template }}"
+    custom_role: rabbitmq
+    src_ems_id: "{{ SPB }}"
+    placement_availability_zone: "{{ default_az }}"
+    src_vm_id: "{{ rhel7 }}"
+    instance_type: "{{ t1_2medium }}"
+    number_of_vms: 4
+    service_guid: "{{ service.service_guid }}"

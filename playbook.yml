@@ -1,0 +1,6 @@
+---
+- name: Request Cloud Infra
+  hosts: local
+  gather_facts: no
+  roles:
+    - cloud

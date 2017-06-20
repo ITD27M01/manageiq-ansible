@@ -1,0 +1,18 @@
+---
+# API aliases
+windows_server_2k12r2: 1
+rhel7: 2
+rhel6: 3
+
+SPB: 3
+NSK: 7
+
+default_az: 1
+
+t1_tiny: 22
+t1_small: 20
+t1_medium: 9
+t1_2medium: 4
+t1_large: 12
+t1_2large: 11
+# ------------

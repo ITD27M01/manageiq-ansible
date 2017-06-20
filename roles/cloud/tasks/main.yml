@@ -1,0 +1,36 @@
+---
+- name: Check if Cloud Service exist
+  cloud_service:
+    name: "{{ service_name }}"
+    state: present
+    url: "{{ cloud_url }}"
+    user: "{{ cloud_user }}"
+    password: "{{ cloud_password }}"
+    workgroup: "{{ cloud_group }}"
+  register: service
+  tags:
+    - service
+    - single
+    - parallel
+
+- name: Create new Cloud Resource
+  cloud_resource:
+    url: "{{ cloud_url }}"
+    user: "{{ cloud_user }}"
+    password: "{{ cloud_password }}"
+    workgroup: "{{ cloud_group }}"
+    service_template: "{{ service_template }}"
+    resource_data: "{{ item }}"
+  with_items: "{{ cloud_resources }}"
+  tags:
+    - single
+
+- name: Create new Cloud Resources
+  cloud_resources:
+    url: "{{ cloud_url }}"
+    user: "{{ cloud_user }}"
+    password: "{{ cloud_password }}"
+    workgroup: "{{ cloud_group }}"
+    resources_data: "{{ cloud_resources }}"
+  tags:
+    - parallel
